@@ -98,13 +98,13 @@ function drawLink() {
     let speed = 2;
     animationCounter++;
 
-    if (leftPressed) {
+    if (leftPressed && !collision(linkX - speed, linkY, map7_7)) {
         linkX -= speed;
         if (currentAnimation === 0) {
             ctx.drawImage(link, 30, 0, 16, 16, linkX, linkY, 16, 16)
         } else if (currentAnimation === 1) {
             ctx.drawImage(link, 30, 30, 16, 16, linkX, linkY, 16, 16)
-        }
+        } 
         if (animationCounter >= 6) {
             currentAnimation++;
             animationCounter = 0;
@@ -113,7 +113,7 @@ function drawLink() {
             }
         }
     } 
-    else if (rightPressed) {
+    else if (rightPressed && !collision(linkX + speed, linkY, map7_7)) {
         linkX += speed;
         if (currentAnimation === 0) {
             ctx.drawImage(link, 91, 0, 16, 16, linkX, linkY, 16, 16)
@@ -128,7 +128,7 @@ function drawLink() {
             }
         }
     }
-    else if (downPressed) {
+    else if (downPressed && !collision(linkX, linkY + speed, map7_7)) {
         linkY += speed;
         if (currentAnimation === 0) {
             ctx.drawImage(link, 0, 0, 16, 16, linkX, linkY, 16, 16)
@@ -143,7 +143,7 @@ function drawLink() {
             }
         }
     }
-    else if (upPressed) {
+    else if (upPressed && !collision(linkX, linkY - speed, map7_7)) {
         linkY -= speed;
         if (currentAnimation === 0) {
             ctx.drawImage(link, 60, 0, 16, 16, linkX, linkY, 16, 16)
@@ -174,6 +174,23 @@ function drawLink() {
     }
 }
 
+function collision(x, y, map) {
+    for (let i = 0; i < map.length; i++) {
+      for (let j = 0; j < map[i].length; j++) {
+        if (map[i][j] != 2) {
+          if (
+            x <= j * 16 + 16 &&
+            x + 12 >= j * 16 &&
+            y + 10 <= i * 16 + 16 &&
+            y + 16 >= i * 16
+          ) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 
 // MAIN
 function draw() {
