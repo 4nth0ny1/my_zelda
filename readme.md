@@ -1,5 +1,5 @@
 1.  [ x ] - render first map
-2.  [ ] - render link and basic walking animations
+2.  [ x ] - render link and basic walking animations
 3.  [ ] - add link collisions with map
 4.  [ ] - add map transition to cave
 5.  [ ] - add cave gameObjects(oldman, wooden sword, flames, and text)
